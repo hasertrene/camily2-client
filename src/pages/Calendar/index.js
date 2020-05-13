@@ -2,20 +2,36 @@ import React, { useState } from "react";
 import moment from "moment";
 import MonthView from "../../components/MonthView";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Box, Container, Grid } from "@material-ui/core";
+import {
+  Typography,
+  Box,
+  Container,
+  Grid,
+  Tooltip,
+  Paper,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: "2em",
   },
+  grid: {
+    overflow: "hidden",
+  },
   monthBox: {
     position: " -webkit-sticky",
     position: "sticky",
-    // display: "inline-block",
+    margin: "0 0 25px 0",
   },
-  monthNav: {
-    position: "relative",
-    // display: "inline-block",
+  monthNavAdd: {
+    margin: "0 -50vw 0 0",
+    filter: "blur(3px)",
+    cursor: "pointer",
+  },
+  monthNavSub: {
+    margin: "0 0 0 -50vw",
+    filter: "blur(3px)",
+    cursor: "pointer",
   },
 }));
 
@@ -41,15 +57,24 @@ export default function Calendar() {
   console.log();
 
   return (
-    <Grid container direction='row' justify='center' alignItems='flex-start'>
-      <Box className={classes.monthNav} onClick={() => clickMonth("sub")}>
-        <MonthView year={year} month={prevMonth} />
+    <Grid
+      className={classes.grid}
+      container
+      direction='row'
+      justify='center'
+      justifyContent='space-between'
+      alignItems='flex-start'>
+      <Box className={classes.monthNavSub} onClick={() => clickMonth("sub")}>
+        <MonthView now={now} year={year} month={prevMonth} />
       </Box>
-      <Box className={classes.monthBox} onClick={(e) => console.log(e.target)}>
-        <MonthView year={year} month={month} active />
-      </Box>
-      <Box className={classes.monthNav} onClick={() => clickMonth("add")}>
-        <MonthView year={year} month={nextMonth} />
+      <Paper
+        elevation={3}
+        className={classes.monthBox}
+        onClick={(e) => console.log(e.target)}>
+        <MonthView now={now} year={year} month={month} active />
+      </Paper>
+      <Box className={classes.monthNavAdd} onClick={() => clickMonth("add")}>
+        <MonthView now={now} year={year} month={nextMonth} />
       </Box>
     </Grid>
   );

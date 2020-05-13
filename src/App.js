@@ -10,7 +10,7 @@ import Calendar from "./pages/Calendar";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(2),
+    padding: theme.spacing(0),
   },
 }));
 

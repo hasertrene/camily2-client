@@ -6,12 +6,24 @@ import { Typography, Box, Container } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: "2em",
-    display: "inline-block",
     width: "40vw",
     textAlign: "center",
   },
+  rootActive: {
+    padding: "3em",
+    width: "80vw",
+    textAlign: "center",
+  },
   day: {
-    padding: "2px",
+    padding: "22px",
+    justify: "flex-start",
+    alignItems: "flex-start",
+  },
+  dayActive: {
+    padding: "35px",
+    lineHeight: "2rem",
+    justify: "flex-start",
+    alignItems: "flex-start",
   },
 }));
 
@@ -25,7 +37,7 @@ export default function MonthView(props) {
   moment.updateLocale("en", {
     week: {
       dow: 1,
-      doy: 6,
+      doy: 7,
     },
   });
 
@@ -64,12 +76,10 @@ export default function MonthView(props) {
     });
   }
 
-  console.log(moment().month(month));
-
   return (
     <Box
       component='span'
-      className={classes.root}
+      className={props.active ? classes.rootActive : classes.root}
       color={props.active ? "black" : "gray"}>
       <Typography variant='h4'>
         {moment().month(month).format("MMMM, YYYY")}
@@ -78,13 +88,13 @@ export default function MonthView(props) {
         <p>
           {week.days.map((day) => (
             <span
-              className={classes.day}
+              className={props.active ? classes.dayActive : classes.day}
               style={
                 moment().month(month).month() !== moment(day).month() &&
                 props.active
                   ? { color: "gray" }
-                  : moment().format("D") === moment(day).format("D") &&
-                    props.active
+                  : moment(props.now).format("YY, MM, DD") ===
+                    moment(day).format("YY, MM, DD")
                   ? { fontWeight: "bold" }
                   : {}
               }>

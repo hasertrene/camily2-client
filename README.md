@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# camily2-client
+
+Rebuilding [Camily](https://github.com/renehasert/camily-client) with GraphQL, PostgresQL, Material-UI and Moment.js
 
 ## Available Scripts
 

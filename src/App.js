@@ -1,9 +1,11 @@
 import React from "react";
 import "./App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box } from "@material-ui/core";
+import { Box, Container } from "@material-ui/core";
+import Calendar from "./pages/Calendar";
+// import gql from "graphql-tag";
+// import { useQuery } from "@apollo/react-hooks";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,10 +16,25 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
+
+  // const GET_ALL_EVENTS = gql`
+  //   query {
+  //     getAllEvents {
+  //       title
+  //       description
+  //     }
+  //   }
+  // `;
+
+  // const { loading, error, data } = useQuery(GET_ALL_EVENTS);
+  // console.log(data);
+
   return (
-    <Container maxWidth='sm' className={classes.root}>
+    <Container className={classes.root}>
       <CssBaseline />
-      <Box>Dickings</Box>
+      <Box>
+        <Calendar />
+      </Box>
     </Container>
   );
 }

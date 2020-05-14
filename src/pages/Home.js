@@ -1,23 +1,17 @@
 import React from "react";
-import "./App.css";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, Container } from "@material-ui/core";
-import Home from "./pages/Home";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { Container } from "@material-ui/core";
+import Calendar from "../components/Calendar";
+import Events from "../components/Events";
 
 // import gql from "graphql-tag";
 // import { useQuery } from "@apollo/react-hooks";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.default,
-    padding: 0,
-  },
+  root: {},
 }));
 
-function App() {
-  const desktop = useMediaQuery("(min-width:770px)");
+function Home({ desktop }) {
   const classes = useStyles();
 
   // const GET_ALL_EVENTS = gql`
@@ -33,11 +27,11 @@ function App() {
   // console.log(data);
 
   return (
-    <Container className={classes.root}>
-      <CssBaseline />
-      <Home desktop={desktop} />
+    <Container>
+      <Calendar desktop={desktop} />
+      <Events />
     </Container>
   );
 }
 
-export default App;
+export default Home;
